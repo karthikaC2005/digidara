@@ -1,0 +1,32 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>View Feedback</title>
+  <link rel="stylesheet" href="/static/feedback.css">
+</head>
+<body>
+  <h2>All Submitted Feedback</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Faculty</th>
+        <th>Student Name</th>
+        <th>Rating</th>
+        <th>Comments</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entry in feedback %}
+      <tr>
+        <td>{{ entry['Faculty'] }}</td>
+        <td>{{ entry['Student name'] }}</td>
+        <td>{{ entry['Rating']}}</td>
+        <td>{{ entry['Comments'] }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
