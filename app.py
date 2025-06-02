@@ -1,37 +1,50 @@
-from flask import Flask,render_template,request,redirect
-from flask_mysqldb import MySQL
+from flask import Flask,render_template,request
+import mysql.connector
 
 app=Flask(__name__)
-app.config['MYSQL_HOST']='localhost'
-app.config['MYSQL_USER']='root'
-app.config['MYSQL_PASSWORD']='yourpassword'
-app.config['MYSQL_DB']='feedback_db'
 
-mysql=MySQL(app)
+db=mysql.connector.connect(
+host='localhost',
+user='root',
+password='',
+database='app'
+)
+cursor=db.cursor()
 
 @app.route('/')
-def select_faculty():
-    cur=mysql.connection.cursor()
-    cur.execute("SELECT * FROM faculty")
-    faculty_list=cur.fetchall()
-    return render_template('select_faculty.html',faculty=faculty_list)
-@app.route('/submit_feedback/<int:faculty_id>',methods=['GET','POST'])
-def submit_feedback(faculty_id):
-    if request.method=='POST':
-        student_name=request.form['student_name']
-        rating=request.form['rating']
-        comments=request.form['comments']
-        cur=mysql.connection.cursor()
-        cur.execute('''INSERT INTO feedback (faculty_id,student_name,rating,comments) VALUES (%s,%s,%s,%s)''',(faculty_id,student_name,rating,comments))
-        mysql.connection.commit()
-        return render_template('confirmation.html',name=student_name)
-    return render_template('submit_feedback.html',faculty_id=faculty_id)
-@app.route('/admin_feedback')
-def admin_feedback():
-    cur=mysql.connection.cursor()
-    cur.execute('''SELECT f.name,f.department,AVG(rating) AS avg_rating,COUNT(*) AS total FROM feedback fb JOIN faculty f ON fb.aculty_id=f.faculty_id GROUP BY fb.culty_id''')
-    summary=cur.fetchall()
-    return render_template('admin_feedback_view.html',summary=summary)
+def home():
+    return render_template('home.html')
+@app.route('/select_faculty')
+def select_facult():
+   return render_template('select_faculty.html')
+@app.route('/submit',methods=['POST'])
+def submit():
+       faculty=request.form['faculty']
+       student_name=request.form['student_name']
+       rating=request.form['rating']
+       comments=request.form['comments']
+       insert_query='''INSERT INTO facult (faculty,student_name,rating,comments) VALUES (%s,%s,%s,%s)'''
+       cursor.execute(insert_query,(faculty,student_name,rating,comments))
+       db.commit()
+       return render_template('submit_feedback.html') 
+@app.route('/confirmation')
+def confirmation():
+    return render_template('confirmation.html')
+@app.route('/admin_feedback_view')
+def admin_feedback_view():
+    cursor=mysql.connector.cursor()
+    cursor.execute('''SELECT faculty,student_name,rating,comments FROM feed''')
+    data=cursor.fetchall()
+    cursor.close()
+    feed=[]
+    for row in data:
+        feed.append({'Faculty':row[0],'Student_name':row[1],'Rating':row[2],'Comments':row[3]})
+        return render_template('admin_feedback_view.html',feed=feed)
+
+    
+if(__name__)=='__main__':
+ app.run(debug=True)
+
 
 
         
