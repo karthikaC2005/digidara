@@ -1,4 +1,4 @@
-<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -18,12 +18,12 @@
       </tr>
     </thead>
     <tbody>
-      {% for entry in feedback %}
+      {% for feedback in feedbacks %}
       <tr>
-        <td>{{ entry['Faculty'] }}</td>
-        <td>{{ entry['Student name'] }}</td>
-        <td>{{ entry['Rating']}}</td>
-        <td>{{ entry['Comments'] }}</td>
+        <td>{{ feedback['Faculty'] }}</td>
+        <td>{{ feedback['Student_name'] }}</td>
+        <td>{{ feedback['Rating']}}</td>
+        <td>{{ feedback['Comments'] }}</td>
       </tr>
       {% endfor %}
     </tbody>
