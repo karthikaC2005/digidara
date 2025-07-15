@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Feedback Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      width: 90%;
+      max-width: 500px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 30px;
+      color: #f0f0f0;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .buttons a {
+      text-decoration: none;
+      padding: 12px;
+      background: white;
+      color: #5a67d8;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
+
+    .buttons a:hover {
+      background: #f0f0f0;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎓 Student Feedback Portal</h1>
+    <p>Share your thoughts. Improve education quality. Quick & secure feedback system for students and staff.</p>
+
+    <div class="buttons">
+      <a href="{{ url_for('login') }}">Student Login</a>
+      <a href="{{ url_for('register') }}">Student Register</a>
+      <a href="{{ url_for('admin_login') }}">Admin Login</a>
+    </div>
+
+    <div class="footer">
+      <p>© {{ year }} College Feedback System. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>

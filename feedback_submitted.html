@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feedback Submitted</title>
+  <style>
+    body {
+      background: #e0f7fa;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .success-box {
+      background: white;
+      padding: 50px 30px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .success-box h2 {
+      color: #2e7d32;
+      margin-bottom: 20px;
+    }
+
+    .success-box p {
+      font-size: 16px;
+      color: #444;
+    }
+
+    .success-box a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #3f87a6;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+    }
+
+    .success-box a:hover {
+      background-color: #2b6d88;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-box">
+    <h2>🎉 Feedback Submitted!</h2>
+    <p>Thank you for sharing your feedback.</p>
+    <a href="{{ url_for('student_dashboard') }}">Back to Dashboard</a>
+  </div>
+</body>
+</html>
